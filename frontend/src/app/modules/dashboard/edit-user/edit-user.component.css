@@ -1,0 +1,16 @@
+.disabled {
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/*@media (max-width: 767.98px) {
+  .editor-margin {
+    margin-top: 140px;
+  }
+}
+
+@media (min-width: 767.98px) {
+  .editor-margin {
+  margin-top: 100px;
+} }*/

@@ -1,0 +1,45 @@
+<div class="card my-4 text-center">
+  <!--<h5 class="card-header">USER</h5>-->
+  <div class="card-body">
+    <div class="picture-wrapper mb-4">
+      <div class="user-picture m-auto">
+       <!-- <i class="fa fa-user fa-5x"></i>-->
+        <img src="{{userService?.getAuthUser().image}}" width="100" height="100" class="img-fluid" alt="">
+      </div>
+    </div>
+    <div class="profile-details text-center">
+      <p class="mb-0 text-uppercase name">{{userService?.getAuthUser().name}}</p>
+     <!-- <small class="text-uppercase role">Administrator</small>-->
+    </div>
+    <a [routerLink]="['/dashboard/user/edit']" [ngClass]="color" (mouseover)="color='text-primary'" (mouseout)="color='text-muted'"> Edit User </a>
+  </div>
+</div>
+
+<div class="card">
+  <!--<h5 class="card-header">USER</h5>-->
+  <div class="card-body">
+    <div class="list-group list-group-flush clearfix ">
+      <a [routerLink]="['/dashboard/post/add']" class="list-group-item p-2 list-group-item-action text-success cursor">
+        <i class="fa fa-plus mr-1"></i> Add Post
+      </a>
+    </div>
+    <hr class="m-0 p-0">
+    <div class="list-group list-group-flush clearfix" [class.disabled]="isDisabled">
+      <a (click)="postBulkAction('delete')" class="list-group-item p-2 list-group-item-action text-danger cursor">
+        <i class="fa fa-remove mr-1"></i> Bulk Delete
+      </a>
+    </div>
+    <hr class="m-0 p-0">
+    <div class="list-group list-group-flush clearfix" [class.disabled]="isDisabled">
+      <a (click)="postBulkAction('publish')" class="list-group-item p-2 list-group-item-action text-primary cursor">
+        <i class="fa fa-toggle-on mr-1"></i> Bulk Publish
+      </a>
+    </div>
+    <hr class="m-0 p-0">
+    <div class="list-group list-group-flush clearfix" [class.disabled]="isDisabled">
+      <a (click)="postBulkAction('unpublish')" class="list-group-item p-2 list-group-item-action text-muted cursor">
+        <i class="fa fa-toggle-off mr-1"></i> Bulk Unpublish
+      </a>
+    </div>
+  </div>
+</div>

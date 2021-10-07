@@ -1,0 +1,43 @@
+<form #form="ngForm" class="form-signup my-5" novalidate>
+  <h3 class="mb-3 text-center">Create Acount</h3>
+  <div class="form-group my-2">
+    <label for="inputName" class="sr-only">Name</label>
+    <input type="text" id="inputName" class="form-control" placeholder="Name" name="name" #name="ngModel"
+           [(ngModel)]="user.name" required minlength="3">
+    <small *ngIf="!name.valid && name.touched" class="text-danger">Name should be minimum 3 characters.</small>
+  </div>
+  <div class="form-group my-2">
+    <label for="inputUsername" class="sr-only">Username</label>
+    <input type="text" id="inputUsername" class="form-control" placeholder="Username" name="username"
+           #username="ngModel" [(ngModel)]="user.username" required minlength="2">
+    <small *ngIf="!username.valid && username.touched" class="text-danger">Username should be minimum 2 characters.</small>
+  </div>
+  <div class="form-group my-2">
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="email" #email="ngModel"
+           [(ngModel)]="user.email" required pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$">
+    <small *ngIf="!email.valid && email.touched" class="text-danger">Email is not valid.</small>
+  </div>
+  <div class="form-group my-2">
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password"
+           #password="ngModel" [(ngModel)]="user.password" required minlength="6">
+    <small *ngIf="!password.valid && password.touched" class="text-danger">Password should be minimum 6 characters.</small>
+  </div>
+  <div class="form-group my-1">
+    <label for="inputCPassword" class="sr-only">Confirm Password</label>
+    <input type="password" id="inputCPassword" class="form-control" placeholder="Confirm Password" name="confirmPassword"
+           #cPassword="ngModel" [(ngModel)]="confirmPassword" required minlength="6">
+    <small *ngIf="!cPassword.valid && cPassword.touched || cPassword.valid && confirmPassword !== user.password"
+           class="text-danger">Confirm Password should be same with password.</small>
+  </div>
+  <button class="btn btn-lg btn-primary btn-block" type="button"
+          [disabled]="!form.valid" (click)="createUser();form.resetForm()">Sign up
+  </button>
+  <br>
+  <div *ngIf="submitted">
+    <p class="text-center">
+      You have submitted successfully. A Confirmation message was sent to <strong class="text-primary">{{emailAdress}}</strong>
+    </p>
+  </div>
+</form>

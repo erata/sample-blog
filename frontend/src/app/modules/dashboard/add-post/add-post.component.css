@@ -1,0 +1,5 @@
+quill-editor {
+  min-height: 16em;
+  max-height: 20em;
+  overflow-y: auto;
+}

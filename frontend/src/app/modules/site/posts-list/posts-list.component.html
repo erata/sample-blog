@@ -1,0 +1,38 @@
+<div class="container">
+  <div *ngIf="!posts" class="text-center my-5">
+    <i class="fa fa-spinner fa-spin fa-5x fa-fw"></i>
+    <span class="sr-only">Loading...</span>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item" *ngFor="let post of posts?.content; let i = index">
+      <a class="h3" [routerLink]="'/post/' + post?.id">{{post?.title | ucwords}}</a>
+      <div class="text-muted">
+        Posted by <span class="font-weight-bold">{{post?.userName}}</span>
+        on <span class="font-weight-bold">{{post?.createdAt | date: 'shortDate' }}</span>
+      </div>
+      <div class="text-muted font-weight-lighter">
+        <span *ngFor="let category of post.categories;">
+          <i class="fa fa-tag mr-1"></i>{{category}}
+        </span>
+        <span *ngIf="post.commentCount>0">
+          <i class="fa fa-comment mr-1"></i>{{post?.commentCount}}
+        </span>
+      </div>
+    </li>
+  </ul>
+
+
+  <div class="row" [hidden]="posts?.totalPages == 1">
+    <hr>
+    <div class="col-xs-12 col-12">
+      <pagination
+        [totalItems]="posts?.totalElements"
+        [(ngModel)]="page"
+        [itemsPerPage]="size"
+        (pageChanged)="pageChanged($event)"
+        class="d-flex justify-content-center">
+      </pagination>
+    </div>
+  </div>
+
+</div>

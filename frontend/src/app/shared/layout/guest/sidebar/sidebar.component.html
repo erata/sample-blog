@@ -1,0 +1,37 @@
+<!-- Search Widget -->
+<div class="card my-4">
+  <h5 class="card-header">Search</h5>
+  <div class="card-body">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search..." #txSearch>
+      <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button" (click)="getSearchPosts(txSearch.value)">Go</button>
+          </span>
+    </div>
+  </div>
+</div>
+<!-- Search Widget -->
+
+<!-- Categories Widget -->
+<div class="card my-4">
+
+  <h5 class="card-header">Categories</h5>
+  <div class="card-body">
+    <div class="list-group list-group-flush clearfix">
+      <a [routerLink]="['/posts']" *ngFor="let category of categories;"
+         (click)="getCategoryPosts(category.name)"
+         class="list-group-item p-2 list-group-item-action text-primary" style="cursor: pointer;">
+        {{category?.name}} <span class="badge badge-pill badge-secondary pull-right">{{category?.postCount}}</span>
+      </a>
+    </div>
+
+    <!--<ul class="list-group list-group-flush">
+      <li class="list-group-item" *ngFor="let category of strCategories;">
+        <a href="#">
+          {{category?.name}} <span class="badge badge-pill badge-secondary">{{category?.postCount}}</span>
+        </a>
+      </li>
+    </ul>-->
+  </div>
+</div>
+<!-- Categories Widget -->

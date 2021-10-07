@@ -1,0 +1,61 @@
+<div *ngIf="!currentPost" class="text-center my-5">
+  <i class="fa fa-spinner fa-spin fa-5x fa-fw"></i>
+  <span class="sr-only">Loading...</span>
+</div>
+<div *ngIf="currentPost">
+  <h2 class="mt-2"> {{currentPost?.title}}</h2>
+  <div [innerHTML]="currentPost?.content"></div>
+  <br>
+
+  <div class="card my-4">
+    <!--<h5 class="card-header">Comments</h5>-->
+    <div class="card-body">
+      <button class="btn btn-link" [hidden]="!hideComment" (click)="hideComment=false">
+        <i class="fa fa-arrow-right"></i> Click to add/show comments ({{currentPost?.comments.length}})
+      </button>
+
+      <div [hidden]="hideComment">
+        <form #form="ngForm" novalidate>
+          <!--   <h5>Add Comment</h5>-->
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="name" class="sr-only">Name</label>
+              <input type="text" id="name" class="form-control" placeholder="Name" required [(ngModel)]="comment.name"
+                     name="name" #name="ngModel" minlength="3"/>
+              <small *ngIf="!name.valid && name.touched" class="text-danger">Name should be minimum 3 characters.
+              </small>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="email" class="sr-only">Email</label>
+              <input type="email" id="email" class="form-control" placeholder="Email" required
+                     [(ngModel)]="comment.email" name="email" #email="ngModel" minlength="5"
+                     pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"/>
+              <small *ngIf="!email.valid && email.touched" class="text-danger">Email is not valid.</small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="content" class="sr-only">Content</label>
+            <textarea class="form-control" id="content" rows="3" placeholder="Leave a Comment" required
+                      [(ngModel)]="comment.content" name="content" #content="ngModel"></textarea>
+            <small *ngIf="!content.valid && content.touched" class="text-danger">Content could not be empty.</small>
+          </div>
+          <button [disabled]="!form.valid" (click)="addComment(); form.resetForm()" class="btn btn-primary">Submit
+          </button>
+        </form>
+
+        <br>
+
+        <!-- <h5>Comments</h5>-->
+        <div class="media mb-4" *ngFor="let comment of currentPost?.comments; let i = index">
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+          <div class="media-body">
+            <h5 class="mt-0">{{comment?.name}}</h5>
+            {{comment?.content}}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

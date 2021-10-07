@@ -1,0 +1,28 @@
+<div *ngIf="currentPost" class="edit-form">
+  <form novalidate>
+    <div class="form-group">
+      <label for="title" class="font-weight-bold">Title</label>
+      <input type="text" class="form-control" id="title" [(ngModel)]="currentPost.title" name="title" />
+    </div>
+    <div class="form-group">
+      <label for="content" class="font-weight-bold">Content</label>
+      <quill-editor id="content" name="content" [(ngModel)]="currentPost.content" [styles]="{minHeight: '250px'}"></quill-editor>
+    </div>
+    <div class="form-group">
+      <label for="categories" class="font-weight-bold">Categories</label>
+      <input type="text" class="form-control" id="categories" [(ngModel)]="strCategories" name="categories" />
+    </div>
+  </form>
+
+  <button type="submit" class="btn btn-md btn-primary btn-size mr-1" (click)="savePost()">Save</button>
+  <button type="submit" class="btn btn-md btn-success btn-size mr-1" (click)="publishPost()">Save and Publish</button>
+  <button class="btn btn-md btn-danger btn-size" (click)="deletePost()">Delete</button>
+
+  <p class="text-success text-center">{{ message }}</p>
+</div>
+
+<div *ngIf="!currentPost">
+  <br />
+  <p>Cannot access this Post...</p>
+</div>
+

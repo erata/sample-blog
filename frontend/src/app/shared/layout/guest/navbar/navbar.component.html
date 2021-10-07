@@ -1,0 +1,61 @@
+<!-- Navigation-->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img src="../../../../favicon.ico" height="30" width="28"/> Blog
+    </a>
+    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed"
+            data-toggle="collapse" data-target="#navbarResponsive"
+            [attr.aria-expanded]="!isCollapsed" [ngClass]="{'collapsed': isCollapsed}"
+            aria-controls="navbarResponsive" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive" [ngClass]="{'show': !isCollapsed}">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+         <a class="nav-link"[routerLink]="['/posts']" [routerLinkActive]="'active'">
+           <i class="fa fa-home mr-1"></i> Home
+         </a>
+       </li>
+       <!-- <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/contact']" [routerLinkActive]="'active'">
+            <i class="fa fa-envelope mr-1"></i>Contact
+          </a>
+        </li>-->
+        <li *ngIf="!userService.isUserLoggedIn()" class="nav-item">
+          <a class="nav-link" [routerLink]="['/signup']" [routerLinkActive]="'active'">
+            <i class="fa fa-user-plus mr-1"></i> Signup
+          </a>
+        </li>
+        <li *ngIf="!userService.isUserLoggedIn()" class="nav-item">
+          <a class="nav-link" [routerLink]="['/login']" [routerLinkActive]="'active'">
+            <i class="fa fa-sign-in mr-1"></i> Login
+          </a>
+        </li>
+        <li *ngIf="userService.isUserLoggedIn()" class="nav-item">
+          <a class="nav-link" (click)="userService.logOut()" [routerLink]="['/']" [routerLinkActive]="'active'">
+            <i class="fa fa-sign-out mr-1"></i> Logout
+          </a>
+        </li>
+       <!--
+       <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="fa fa-user mr-1"></i>Login
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user mr-1"></i>User
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#">Login</a>
+            <a class="dropdown-item" href="#">Logout</a>
+            <a class="dropdown-item" href="#">Settings</a>
+            <a class="dropdown-item" href="#">About</a>
+          </div>
+        </li>
+        -->
+      </ul>
+    </div>
+  </div>
+</nav>

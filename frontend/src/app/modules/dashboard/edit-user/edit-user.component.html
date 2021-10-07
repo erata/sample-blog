@@ -1,0 +1,29 @@
+<div *ngIf="user" class="edit-form">
+  <form #form="ngForm" novalidate>
+    <div class="form-group">
+      <label for="name" class="font-weight-bold">Name</label>
+      <input type="text" class="form-control" id="name" required [(ngModel)]="user.name" name="name" #name="ngModel"/>
+    </div>
+    <div class="form-group">
+      <label for="username" class="font-weight-bold">Username</label>
+      <input type="text" class="form-control disabled" id="username" [(ngModel)]="user.username" name="username" #username="ngModel"/>
+    </div>
+    <div class="form-group">
+      <label for="email" class="font-weight-bold">Email</label>
+      <input type="email" class="form-control disabled" id="email" required [(ngModel)]="user.email" name="email" #email="ngModel"/>
+    </div>
+    <div class="form-group">
+      <label for="image" class="font-weight-bold">Image</label>
+      <input type="text" class="form-control" id="image" [(ngModel)]="user.image" name="image" #image="ngModel"/>
+    </div>
+    <div class="form-group">
+      <label for="aboutUser" class="font-weight-bold">About User</label>
+      <quill-editor id="aboutUser" [(ngModel)]="user.aboutUser" [styles]="{minHeight: '100px'}" name="aboutUser" #aboutUser="ngModel"></quill-editor>
+    </div>
+    <div class="text-right editor-margin">
+    <button [disabled]="!form.valid" class="btn btn-primary" (click)="updateUser()">Update User</button>
+    </div>
+  </form>
+  <br>
+  <p class="text-success text-center">{{ message }}</p>
+</div>
